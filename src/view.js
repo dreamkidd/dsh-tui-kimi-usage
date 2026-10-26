@@ -34,7 +34,7 @@ export function buildUsageView(store) {
     const compact = format === 'compact'
     const now = new Date()
 
-    const win = (label, w) => {
+    const win = (label, w, forceTime = false) => {
       if (!w) return null
       const tone = toneOf(w.usedPct, warnThreshold)
       if (compact) {
@@ -46,7 +46,7 @@ export function buildUsageView(store) {
         e(ui.Text, { dimColor: true }, `${label} `),
         e(ui.Text, { color: tone }, `${bar(w.usedPct)} ${w.usedPct}%`),
         w.resetAt
-          ? e(ui.Text, { dimColor: true }, ` ↻${formatReset(w.resetAt, now)}`)
+          ? e(ui.Text, { dimColor: true }, ` ↻${formatReset(w.resetAt, now, { forceTime })}`)
           : null,
       )
     }
@@ -55,7 +55,7 @@ export function buildUsageView(store) {
       ui.Box,
       null,
       e(ui.Text, { dimColor: true }, 'kimi '),
-      win('5h', reading?.window5h),
+      win('5h', reading?.window5h, true),
       reading?.window5h && reading?.window7d
         ? e(ui.Text, { dimColor: true }, ' · ')
         : null,

@@ -14,6 +14,22 @@ test('formatReset: 同日 HH:mm，跨天 MM-dd（本地时区）', () => {
   assert.equal(formatReset(reading.window7d.resetAt, now), '10-29')
 })
 
+test('formatReset: forceTime（5h 窗口）跨天也显示 HH:mm', () => {
+  const night = new Date('2026-10-23T22:30:00+08:00')
+  const afterMidnight = new Date('2026-10-24T01:46:00+08:00')
+  assert.equal(formatReset(afterMidnight, night, { forceTime: true }), '01:46')
+  assert.equal(formatReset(afterMidnight, night), '10-24')
+})
+
+test('formatStatus full: 5h 重置跨午夜仍显示时间，7d 保持日期', () => {
+  const night = new Date('2026-10-23T22:30:00+08:00')
+  const r = {
+    window5h: { usedPct: 50, resetAt: new Date('2026-10-24T01:46:00+08:00') },
+    window7d: { usedPct: 20, resetAt: new Date('2026-10-29T13:46:59+08:00') },
+  }
+  assert.equal(formatStatus(r, { now: night }), 'kimi 5h 50%↻01:46 · 7d 20%↻10-29')
+})
+
 test('formatStatus full: 完整格式，达阈值窗口加 !', () => {
   assert.equal(formatStatus(reading, { now }), 'kimi 5h 98%!↻21:46 · 7d 60%↻10-29')
 })
