@@ -1,0 +1,18 @@
+# dsh-tui-kimi-usage bundle patch: mount the plugin row into the profile
+# composition tree.
+#
+# `dsh plugin --profile dsh-tui add <this-package>` pnpm-installs the package
+# into the profile and appends it to dsh.profile.bundles. Manual mounting:
+# insert the row below into $DSH_HOME/profiles/dsh-tui/cordis.patch.yml.
+#
+# Optional row config — every key is optional (defaults in parentheses):
+#   baseUrl: string        — 订阅端点根地址 (https://api.kimi.com/coding/v1)
+#   apiKeyEnv: string      — 凭据引用名，经 host 凭据服务解析，与 kimi-coding
+#                            路由同源 (KIMI_CODING_API_KEY)
+#   refreshSeconds: number — 轮询间隔，30–600 (60)
+#   format: 'full' | 'compact' — full: `kimi 5h 98%↻21:46 · 7d 60%↻10-29`;
+#                            compact: `kimi 98/60` (full)
+#   warnThreshold: number  — 已用百分比达到该值时加 `!` 警示，0–100 (90)
+- insert:
+    - id: kimi-usage
+      name: 'dsh-tui-kimi-usage'

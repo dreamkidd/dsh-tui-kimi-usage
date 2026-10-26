@@ -1,0 +1,23 @@
+{
+  "$schema": "urn:dsh-std:community-draft:dsh-plugin:0.15",
+  "id": "dsh-tui-kimi-usage",
+  "name": "dsh-tui-kimi-usage",
+  "version": "0.1.0",
+  "manifestVersion": "0.15",
+  "facets": {
+    "host": {
+      "entry": "src/index.js",
+      "apiVersion": "v1alpha1"
+    }
+  },
+  "requires": {
+    "contracts": []
+  },
+  "permissions": [],
+  "contributes": {},
+  "subscriptions": [],
+  "license": "MIT",
+  "source": {
+    "repository": "https://github.com/dreamkidd/dsh-tui-kimi-usage"
+  }
+}

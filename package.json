@@ -1,0 +1,41 @@
+{
+  "name": "dsh-tui-kimi-usage",
+  "description": "Kimi Code subscription quota windows (5h / 7d) on the dsh-tui status line",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./usage": "./src/usage.js",
+    "./format": "./src/format.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "dsh-plugin.json",
+    "GLOSSARY.md",
+    "docs"
+  ],
+  "engines": {
+    "node": "^22.19 || >=24"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "4.0.1 || 4.0.2 || 4.0.3 || 4.0.4 || 4.0.5",
+    "@deepseek-ai/schemastery": "3.18.1 || ^3.18.2"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.5",
+    "@deepseek-ai/schemastery": "3.18.5"
+  },
+  "license": "MIT"
+}
